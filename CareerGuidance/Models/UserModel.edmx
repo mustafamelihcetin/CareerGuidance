@@ -1,0 +1,274 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="CareerGuidanceModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'CareerGuidance.dbo.Contact' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Contact">
+          <Key>
+            <PropertyRef Name="MessageID" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="Email" />
+            <PropertyRef Name="Message" />
+          </Key>
+          <Property Name="MessageID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Message" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Membership">
+          <Key>
+            <PropertyRef Name="Username" />
+          </Key>
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Surname" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Username" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Address" Type="varchar" MaxLength="50" />
+          <Property Name="Gender" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Role Authority">
+          <Key>
+            <PropertyRef Name="Authorization" />
+          </Key>
+          <Property Name="Role" Type="int" Nullable="false" />
+          <Property Name="Authorization" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="User Role">
+          <Key>
+            <PropertyRef Name="Role" />
+          </Key>
+          <Property Name="Username" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Role" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Role Authority_User Role">
+          <End Role="User Role" Type="Self.User Role" Multiplicity="1" />
+          <End Role="Role Authority" Type="Self.Role Authority" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User Role">
+              <PropertyRef Name="Role" />
+            </Principal>
+            <Dependent Role="Role Authority">
+              <PropertyRef Name="Role" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User Role_Membership">
+          <End Role="Membership" Type="Self.Membership" Multiplicity="1" />
+          <End Role="User Role" Type="Self.User Role" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Membership">
+              <PropertyRef Name="Username" />
+            </Principal>
+            <Dependent Role="User Role">
+              <PropertyRef Name="Username" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CareerGuidanceModelStoreContainer">
+          <EntitySet Name="Membership" EntityType="Self.Membership" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Role Authority" EntityType="Self.Role Authority" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User Role" EntityType="Self.User Role" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Contact" EntityType="Self.Contact" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Contact].[MessageID] AS [MessageID], 
+    [Contact].[Name] AS [Name], 
+    [Contact].[Email] AS [Email], 
+    [Contact].[Message] AS [Message]
+    FROM [dbo].[Contact] AS [Contact]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_Role Authority_User Role" Association="Self.FK_Role Authority_User Role">
+            <End Role="User Role" EntitySet="User Role" />
+            <End Role="Role Authority" EntitySet="Role Authority" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User Role_Membership" Association="Self.FK_User Role_Membership">
+            <End Role="Membership" EntitySet="Membership" />
+            <End Role="User Role" EntitySet="User Role" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CareerGuidanceModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Membership">
+          <Key>
+            <PropertyRef Name="Username" />
+          </Key>
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Surname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Gender" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="User_Role" Relationship="CareerGuidanceModel.FK_User_Role_Membership" FromRole="Membership" ToRole="User_Role" />
+        </EntityType>
+        <EntityContainer Name="CareerGuidanceEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Membership" EntityType="Self.Membership" />
+          <EntitySet Name="Role_Authority" EntityType="CareerGuidanceModel.Role_Authority" />
+          <EntitySet Name="sysdiagrams" EntityType="CareerGuidanceModel.sysdiagrams" />
+          <EntitySet Name="User_Role" EntityType="CareerGuidanceModel.User_Role" />
+          <EntitySet Name="Contact" EntityType="CareerGuidanceModel.Contact" />
+          <AssociationSet Name="FK_User_Role_Membership" Association="CareerGuidanceModel.FK_User_Role_Membership">
+            <End Role="Membership" EntitySet="Membership" />
+            <End Role="User_Role" EntitySet="User_Role" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Role_Authority_User_Role" Association="CareerGuidanceModel.FK_Role_Authority_User_Role">
+            <End Role="User_Role" EntitySet="User_Role" />
+            <End Role="Role_Authority" EntitySet="Role_Authority" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Role_Authority">
+          <Key>
+            <PropertyRef Name="Authorization" />
+          </Key>
+          <Property Name="Authorization" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="User_Role" Relationship="CareerGuidanceModel.FK_Role_Authority_User_Role" FromRole="Role_Authority" ToRole="User_Role" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="User_Role">
+          <Key>
+            <PropertyRef Name="Role" />
+          </Key>
+          <Property Name="Role" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Membership" Relationship="CareerGuidanceModel.FK_User_Role_Membership" FromRole="User_Role" ToRole="Membership" />
+          <NavigationProperty Name="Role_Authority" Relationship="CareerGuidanceModel.FK_Role_Authority_User_Role" FromRole="User_Role" ToRole="Role_Authority" />
+        </EntityType>
+        <EntityType Name="Contact">
+          <Key>
+            <PropertyRef Name="MessageID" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="Email" />
+            <PropertyRef Name="Message" />
+          </Key>
+          <Property Name="MessageID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Message" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="FK_User_Role_Membership">
+          <End Type="CareerGuidanceModel.Membership" Role="Membership" Multiplicity="1" />
+          <End Type="CareerGuidanceModel.User_Role" Role="User_Role" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_Role_Authority_User_Role">
+          <End Type="CareerGuidanceModel.User_Role" Role="User_Role" Multiplicity="1" />
+          <End Type="CareerGuidanceModel.Role_Authority" Role="Role_Authority" Multiplicity="*" />
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CareerGuidanceModelStoreContainer" CdmEntityContainer="CareerGuidanceEntities1">
+          <EntitySetMapping Name="Membership">
+            <EntityTypeMapping TypeName="CareerGuidanceModel.Membership">
+              <MappingFragment StoreEntitySet="Membership">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Role_Authority">
+            <EntityTypeMapping TypeName="CareerGuidanceModel.Role_Authority">
+              <MappingFragment StoreEntitySet="Role Authority">
+                <ScalarProperty Name="Authorization" ColumnName="Authorization" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="CareerGuidanceModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User_Role">
+            <EntityTypeMapping TypeName="CareerGuidanceModel.User_Role">
+              <MappingFragment StoreEntitySet="User Role">
+                <ScalarProperty Name="Role" ColumnName="Role" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Contact">
+            <EntityTypeMapping TypeName="CareerGuidanceModel.Contact">
+              <MappingFragment StoreEntitySet="Contact">
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="MessageID" ColumnName="MessageID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="FK_User_Role_Membership" TypeName="CareerGuidanceModel.FK_User_Role_Membership" StoreEntitySet="User Role">
+            <EndProperty Name="User_Role">
+              <ScalarProperty Name="Role" ColumnName="Role" />
+            </EndProperty>
+            <EndProperty Name="Membership">
+              <ScalarProperty Name="Username" ColumnName="Username" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_Role_Authority_User_Role" TypeName="CareerGuidanceModel.FK_Role_Authority_User_Role" StoreEntitySet="Role Authority">
+            <EndProperty Name="Role_Authority">
+              <ScalarProperty Name="Authorization" ColumnName="Authorization" />
+            </EndProperty>
+            <EndProperty Name="User_Role">
+              <ScalarProperty Name="Role" ColumnName="Role" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="false" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

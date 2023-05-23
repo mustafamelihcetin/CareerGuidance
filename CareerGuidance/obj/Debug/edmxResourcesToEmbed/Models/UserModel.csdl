@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CareerGuidanceModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Membership">
+    <Key>
+      <PropertyRef Name="Username" />
+    </Key>
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Surname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Gender" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <NavigationProperty Name="User_Role" Relationship="CareerGuidanceModel.FK_User_Role_Membership" FromRole="Membership" ToRole="User_Role" />
+  </EntityType>
+  <EntityContainer Name="CareerGuidanceEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Membership" EntityType="Self.Membership" />
+    <EntitySet Name="Role_Authority" EntityType="CareerGuidanceModel.Role_Authority" />
+    <EntitySet Name="sysdiagrams" EntityType="CareerGuidanceModel.sysdiagrams" />
+    <EntitySet Name="User_Role" EntityType="CareerGuidanceModel.User_Role" />
+    <EntitySet Name="Contact" EntityType="CareerGuidanceModel.Contact" />
+    <AssociationSet Name="FK_User_Role_Membership" Association="CareerGuidanceModel.FK_User_Role_Membership">
+      <End Role="Membership" EntitySet="Membership" />
+      <End Role="User_Role" EntitySet="User_Role" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Role_Authority_User_Role" Association="CareerGuidanceModel.FK_Role_Authority_User_Role">
+      <End Role="User_Role" EntitySet="User_Role" />
+      <End Role="Role_Authority" EntitySet="Role_Authority" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Role_Authority">
+    <Key>
+      <PropertyRef Name="Authorization" />
+    </Key>
+    <Property Name="Authorization" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="User_Role" Relationship="CareerGuidanceModel.FK_Role_Authority_User_Role" FromRole="Role_Authority" ToRole="User_Role" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="User_Role">
+    <Key>
+      <PropertyRef Name="Role" />
+    </Key>
+    <Property Name="Role" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Membership" Relationship="CareerGuidanceModel.FK_User_Role_Membership" FromRole="User_Role" ToRole="Membership" />
+    <NavigationProperty Name="Role_Authority" Relationship="CareerGuidanceModel.FK_Role_Authority_User_Role" FromRole="User_Role" ToRole="Role_Authority" />
+  </EntityType>
+  <EntityType Name="Contact">
+    <Key>
+      <PropertyRef Name="MessageID" />
+      <PropertyRef Name="Name" />
+      <PropertyRef Name="Email" />
+      <PropertyRef Name="Message" />
+    </Key>
+    <Property Name="MessageID" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Message" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <Association Name="FK_User_Role_Membership">
+    <End Type="CareerGuidanceModel.Membership" Role="Membership" Multiplicity="1" />
+    <End Type="CareerGuidanceModel.User_Role" Role="User_Role" Multiplicity="*" />
+  </Association>
+  <Association Name="FK_Role_Authority_User_Role">
+    <End Type="CareerGuidanceModel.User_Role" Role="User_Role" Multiplicity="1" />
+    <End Type="CareerGuidanceModel.Role_Authority" Role="Role_Authority" Multiplicity="*" />
+  </Association>
+</Schema>

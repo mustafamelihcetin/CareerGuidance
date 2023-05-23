@@ -1,0 +1,177 @@
+﻿
+@{
+    ViewBag.Title = "Register";
+}
+
+@model CareerGuidance.Models.Membership
+
+
+@*<div class="me-auto ms-auto col-4 mb-lg-4"><h2 class="text-black ms-auto me-auto col-auto">Create a new account</h2></div>*@
+<div class="row p-4 table-bordered ms-auto me-auto mt-4" style="width:380px; height:auto;">
+    @*<div class="position-absolute col-auto ms-auto me-auto bg-body height-auto" style="z-index:9">
+            <span class="h4 text-success text-success">@ViewBag.message</span><br />
+            <span class="h4 text-success text-success">@ViewBag.message2</span>
+        </div>*@
+    @*<ul class="nav nav-tabs">
+        <li class="active col-6"><a data-toggle="tab" href="#home" class="link-primary h4 text-center">Create Account</a></li>
+        <li class="col-6"><a data-toggle="tab" href="#menu1" class="text-success h4 text-center">Login</a></li>
+    </ul>*@
+    <h3 class="text-dark text-center">Create Account</h3>
+    <div class="tab-content" style="height:auto">
+        <div id="home" class="tab-pane fade in active" style="height:auto">
+            @using (Html.BeginForm("Register", "Memberships", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                <div class="col-12 mt-4 ps-4 border-bottom height-auto">
+                    <div class="row m-lg-2">
+                        <div class="col-4">
+                            <div class="height-auto col-12 pt-1 mt-2" style="height:50%"><label for="inputName" class="form-label h4 m-0">Name </label></div>
+                            <div class="height-auto col-12 pt-1" style="height:50%"><label for="inputSurname" class="form-label h4 m-0">Surname</label></div>
+                        </div>
+                        <div class="col-8">
+                            @Html.EditorFor(model => model.Name,"*", new { htmlAttributes = new { @class = "form-control input-item-height col-auto mb-1", @id = "inputName" } })
+                            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                            @Html.EditorFor(model => model.Surname, new { htmlAttributes = new { @class = "form-control input-item-height col-auto mb-2 ", @id = "inputSurname" } })
+                            @Html.ValidationMessageFor(model => model.Surname, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 mt-4 ps-4 border-bottom">
+                    <div class="row m-lg-2">
+                        <div class="col-4">
+                            <label for="inputUsername" class="form-label h4">Username</label>
+                        </div>
+                        <div class="col-8">
+                            @Html.EditorFor(model => model.Username, new { htmlAttributes = new { @class = "form-control input-item-height col-auto", @id = "inputUsername" } })
+                            @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-12 mt-4 ps-4 border-bottom">
+                    <div class="col-12 mt-2">
+                        <div class="row m-lg-2">
+                            <div class="col-4">
+                                <label for="inputPassword" class="form-label h4">Password</label>
+                            </div>
+                            <div class="col-8">
+                                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control input-item-height mb-1", @id = "inputPassword" } })
+                                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-12 mt-4 ps-4 border-bottom">
+                    <div class="col-12 mt-2">
+                        <div class="row m-lg-2">
+                            <div class="col-4">
+                                <label for="inputEmail" class="form-label h4">Email</label>
+                            </div>
+                            <div class="col-8">
+                                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control input-item-height mb-1", @id = "inputEmail", @placeholder = "abc@example.com" } })
+                                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-12 mt-4 ps-4 border-bottom">
+                    <div class="col-12 mt-2">
+                        <div class="row m-lg-2">
+                            <div class="col-4">
+                                <label for="inputAddress" class="form-label h4">Address</label>
+                            </div>
+                            <div class="col-8">
+                                <input type="text" class="form-control input-item-height" id="inputAddress" placeholder="1234 Main St">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-12 mt-4 ps-4 border-bottom">
+                    <div class="col-12 mt-2">
+                        <div class="row m-lg-2">
+                            <div class="col-4">
+                                <label for="Gender" class="form-label h4">Gender</label>
+                            </div>
+                            <div class="col-8">
+                                <label for="MaleRadioButton" class="h4 me-2">Male</label> @Html.RadioButtonFor(model => model.Gender, "Male", new { htmlAttributes = new { @class = " me-5", @name = "gender_choice", @id = "MaleRadioButton" } })
+                                <label for="FemaleRadioButton" class="h4 me-2">Female</label>@Html.RadioButtonFor(model => model.Gender, "Female", new { htmlAttributes = new { @class = " me-5", @name = "gender_choice", @id = "FemaleRadioButton" } })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-12 mt-4">
+                    <button type="submit" class="btn btn-primary col-12 input-item-height">Sign-up</button>
+                </div>
+            }
+
+        </div>
+
+
+
+        
+        <!--<div id="menu1" class="tab-pane fade" style="height:auto">-->
+            @*@using (Html.BeginForm("Register", "Memberships", FormMethod.Post))
+            {*@
+                @*<form class="col-12 mt-5" style="height:auto">*@
+                    <!--<div class="col-12 mt-4 border-bottom">
+                        <div class="row m-lg-2">
+                            <div class="col-4">
+                                <label for="inputUsername" class="form-label h4">Username</label>
+                            </div>
+                            <div class="col-8">
+                                <input type="text" class="form-control input-item-height" id="inputUsername">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 mt-4 border-bottom">
+                        <div class="col-12 mt-2">
+                            <div class="row m-lg-2">
+                                <div class="col-4">
+                                    <label for="inputPassword" class="form-label h4">Password</label>
+                                </div>
+                                <div class="col-8">
+                                    <input type="password" class="form-control input-item-height" id="inputPassword">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="col-12 mt-4">
+                        <div class="col-12 mt-2">
+                            <div class="row m-lg-2">
+                                <div class="col-4">
+
+                                </div>
+                                <div class="col-8">
+                                    <button type="submit" class="btn btn-primary col-12">Login</button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>-->
+                @*}*@
+            <!--</div>-->
+        
+
+    </div>
+</div>
+<br />
+<br />
+<br />
+<div class="col-4 ms-auto me-auto h2 text-warning">@ViewBag.message</div>
+<div>
+
+
+</div>

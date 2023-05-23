@@ -1,0 +1,7 @@
+﻿#myCarousel{
+    width:1000px;
+    height:620px;
+}
+#navbardiv ul li a:hover {
+    background-color:#808080;
+}

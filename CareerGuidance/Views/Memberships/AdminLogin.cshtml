@@ -1,0 +1,50 @@
+﻿
+@{
+    ViewBag.Title = "AdminLogin";
+}
+
+<div id="menu1" class="tab-pane fade" style="height:auto">
+    @using (Html.BeginForm("AdminLogin", "Memberships", FormMethod.Post))
+    {
+        @*<form class="col-12 mt-5" style="height:auto">*@
+        <div class="col-12 mt-4 border-bottom">
+            <div class="row m-lg-2">
+                <div class="col-4">
+                    <label for="inputUsername" class="form-label h4">Username</label>
+                </div>
+                <div class="col-8">
+                    <input type="text" class="form-control input-item-height" id="inputUsername">
+                </div>
+            </div>
+        </div>
+        <div class="col-12 mt-4 border-bottom">
+            <div class="col-12 mt-2">
+                <div class="row m-lg-2">
+                    <div class="col-4">
+                        <label for="inputPassword" class="form-label h4">Password</label>
+                    </div>
+                    <div class="col-8">
+                        <input type="password" class="form-control input-item-height" id="inputPassword">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="col-12 mt-4">
+            <div class="col-12 mt-2">
+                <div class="row m-lg-2">
+                    <div class="col-4">
+
+                    </div>
+                    <div class="col-8">
+                        <button type="submit" class="btn btn-primary col-12">Login</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        @*</form>*@
+    }
+</div>

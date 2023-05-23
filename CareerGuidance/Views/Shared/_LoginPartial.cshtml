@@ -1,0 +1,17 @@
+﻿@model CareerGuidance.Models.Membership
+@using Microsoft.AspNet.Identity
+
+<div style="width:auto;">
+    @if (Request.IsAuthenticated)
+    {
+        <strong class="text-light">@Html.Encode(User.Identity.Name)</strong>
+        <span class="text-warning"> | </span>
+        @Html.ActionLink("Log Out", "Logout", "Memberships", new object { }, new { @class = "text-danger" })
+    }
+    else
+    {
+        @Html.ActionLink("Sign Up", "Register", "Memberships", new object { }, new { @class = "text-white" })
+        <span> | </span>
+        @Html.ActionLink("Log In", "Login", "Memberships", new object { }, new { @class = "text-white" })
+    }
+</div>

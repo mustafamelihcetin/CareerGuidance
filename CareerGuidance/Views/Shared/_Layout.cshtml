@@ -1,0 +1,124 @@
+﻿
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - CareerGuidance.com</title>
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <script src="~/Scripts/modernizr-2.8.3.js"></script>
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="stylesheet" href="styles.dac8f76202a095ed1bb3.css">
+    <script type="text/javascript">
+        function LoadLogin() {
+            alert('Login Clicked');
+            $("#divLogin").load('~/_LoginPartial.cshtml');
+        }
+    </script>
+
+</head>
+<body>
+    <div class="container-fluid bg-black bg-gradient p-0 pe-5 ps-5" style="height:auto; font-family:'Trebuchet MS'; top:0;">
+        <div id="navbardiv" class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+            <div class="bg- p-3 " style="filter: invert(100%);">
+                <a href="/Home/Index">
+                    <label class="h3 m-0 me-5 " style="font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, serif;">
+                        <img src="~/Content/images/4308112_career_dream_focus_path_success_icon.png" width="45" class="figure-img" />CareerGuidance
+                    </label>
+                </a>
+            </div>
+            <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0 ms-auto me-auto" style="height:auto; font-family:Verdana, Geneva, Tahoma, sans-serif">
+                <li><a href="/Home/Index" class="nav-link px-5 py-5 text-warning"><i class=""></i>Home</a></li>
+                <li><a href="/CareerSupport/Index" class="nav-link px-5 py-5 text-warning">Career Assesment Test</a></li>
+                <li><a href="/FAQs/Index" class="nav-link px-5 py-5 text-warning">FAQs</a></li>
+                <li><a href="/ContactUs/Index" class="nav-link px-5 py-5 text-warning">Contact Us</a></li>
+                <li><a href="/About/Index" class="nav-link px-5 py-5 text-warning">About</a></li>
+            </ul>
+
+
+
+            @{
+                Html.RenderPartial("_LoginPartial", new CareerGuidance.Models.Membership());
+            }
+        </div>
+    </div>
+
+    <div id="container" class="container" style="margin-top:30px;">
+        @RenderBody()
+    </div>
+    <footer class="page-footer font-small blue pt-4 bg-light bg-gradient mt-2">
+        <div class="container text-center text-md-left">
+            <div class="row">
+                <div class="col-md-6 mt-md-0 mt-3">
+                    <div class="p-3">
+                        <a class="float-start" href="/Home/Index"> <label class="h3 m-0 me-5 text-black" style="font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, serif;"><img src="~/Content/images/4308112_career_dream_focus_path_success_icon.png" width="45" class="figure-img" />CareerGuidance</label></a>
+                        <div class="col-4 float-end">
+                            @Html.ActionLink("Admin Panel", "Index", "Memberships", new object { }, new { @class = "btn btn-primary px-xxl-6 py-xl-3 col-12" })
+                        </div>
+                    </div><br /><hr class="mb-2" />
+                    <p>CareerGuidence connects you with online career counselling and gives you a package of complete career guidance.</p><br />
+                    <p class="text-decoration-underline">
+                        Mustafa Melih Çetin - 1407010066<br />
+                        Reşit Ekin          - 1600001615
+                    </p>
+
+                </div>
+                <hr class="clearfix w-100 d-md-none pb-3">
+                <div class="col-md-3 mb-md-0 mb-3">
+                    <h5 class="text-uppercase" style="font-weight:bold;">Links</h5>
+                    <ul class="list-unstyled">
+                        <li class="m-2">
+                            <a class="text-secondary" href="#!">Link 1</a>
+                        </li>
+                        <li class="m-2">
+                            <a class="text-secondary" href="#!">Link 2</a>
+                        </li>
+                        <li class="m-2">
+                            <a class="text-secondary" href="#!">Link 3</a>
+                        </li>
+                        <li class="m-2">
+                            <a class="text-secondary" href="#!">Link 4</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-3 mb-md-0 mb-3">
+                    <h6 class="text-uppercase" style="font-weight:bold;">Social Media</h6>
+                    <ul class="list-unstyled">
+                        <li class="m-1 mysocialmediabutton">
+                            <a href="#" class=" text-decoration-none fa fa-facebook px-3 py-2 col-2 text-white" style="background-color: #3b5998; opacity:75%"></a>
+                        </li>
+                        <li class="m-1">
+                            <a href="#" class="text-decoration-none fa fa-instagram px-3 py-2 col-2 text-white" style="background-color: #ac2bac; opacity: 75% "></a>
+                        </li>
+                        <li class="m-1">
+                            <a href="#" class="text-decoration-none fa fa-linkedin px-3 py-2 col-2 text-white" style="background-color: #0082ca; opacity: 75%"></a>
+                        </li>
+                        <li class="m-1">
+                            <a href="#" class="text-decoration-none fa fa-youtube px-3 py-2 col-2 text-white" style="background-color: #ed302f; opacity:75%"></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright text-center py-3 bg-white border-top border-bottom">
+            <div class="col-2 ms-auto me-auto">
+                &copy; @DateTime.Now.Year
+                <a href="http://www.iku.edu.tr"><img class="col-4" src="~/Content/images/iku.png"></a>
+            </div>
+        </div>
+    </footer>
+
+
+
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+</body>
+</html>

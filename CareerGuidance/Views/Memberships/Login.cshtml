@@ -1,0 +1,87 @@
+﻿@model CareerGuidance.Models.Membership
+@{
+    ViewBag.Title = "Login";
+}
+
+
+<style>
+    #container {
+        width: 100%;
+    }
+</style>
+<script type="text/javascript">
+    $(function () {
+
+        $("#showPass").change(function () {
+            var checked = $(this).is(":checked");
+            if (checked) {
+                $("#password").attr("type", "text");
+            } else {
+                $("#password").attr("type", "password");
+            }
+        });
+
+    });
+</script>
+<div class="col-12 p-4" style="border-end-start-radius:5px; min-height:600px; background-image: url(/Content/images/CJQa2T.jpg)">
+    <div class="row p-4 table-bordered ms-auto me-auto bg-light bg-opacity-75" style="border-radius:5px; width: 380px; height: auto; margin-top:160px">
+        <div class="tab-content" style="height:auto">
+            <div class="ms-auto me-auto col-3">
+                
+                <h2>Login</h2>
+                </div>
+            @using (Html.BeginForm("Login", "Memberships"))
+            {
+                <div id="menu1" style="height:auto">
+                    <form class="col-12 mt-5" style="height:auto">
+                        <div class="col-12 mt-4 border-bottom">
+                            <div class="row m-lg-2">
+                                <div class="col-4">
+                                    <label for="inputUsername" class="form-label h4">Username</label>
+                                </div>
+                                <div class="col-8">
+                                    @Html.EditorFor(model => model.Username, new { htmlAttributes = new { @class = "form-control input-item-height col-auto", @id = "inputUsername" } })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 mt-4 border-bottom">
+                            <div class="col-12 mt-2">
+                                <div class="row m-lg-2">
+                                    <div class="col-4">
+                                        <label for="inputPassword" class="form-label h4">Password</label>
+                                    </div>
+                                    <div class="col-8">
+                                        @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control input-item-height mb-1 col-11", @id = "password" } })
+                                        Show Password<input type="checkbox" class="float-end" id="showPass" style="z-index:1;" />
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <div class="col-12 mt-4">
+                            <div class="col-12 mt-2">
+                                <div class="row m-lg-2">
+                                    <div class="col-4">
+
+                                    </div>
+                                    <div class="col-8">
+                                        <button type="submit" class="btn btn-primary col-12">Login</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        @Html.ViewBag.Message1
+                        @Html.ViewBag.Message
+
+                    </form>
+                </div>
+            }
+        </div>
+    </div>
+</div>

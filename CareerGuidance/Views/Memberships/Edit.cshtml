@@ -1,0 +1,106 @@
+﻿@model CareerGuidance.Models.Membership
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+            @using (Html.BeginForm("Edit", "Memberships", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                <div class="col-12 mt-4 ps-4 border-bottom height-auto">
+                    <div class="row m-lg-2">
+                        <div class="col-4">
+                            <div class="height-auto col-12 pt-1 mt-2" style="height:50%"><label for="inputName" class="form-label h4 m-0">Name </label></div>
+                            <div class="height-auto col-12 pt-1" style="height:50%"><label for="inputSurname" class="form-label h4 m-0">Surname</label></div>
+                        </div>
+                        <div class="col-8">
+                            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control input-item-height col-auto mb-1", @id = "inputName" } })
+                            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                            @Html.EditorFor(model => model.Surname, new { htmlAttributes = new { @class = "form-control input-item-height col-auto mb-2 ", @id = "inputSurname" } })
+                            @Html.ValidationMessageFor(model => model.Surname, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 mt-4 ps-4 border-bottom">
+                    <div class="row m-lg-2">
+                        <div class="col-4">
+                            <label for="inputUsername" class="form-label h4">Username</label>
+                        </div>
+                        <div class="col-8">
+                            @Html.EditorFor(model => model.Username, new { htmlAttributes = new { @class = "form-control input-item-height col-auto", @id = "inputUsername" } })
+                            @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-12 mt-4 ps-4 border-bottom">
+                    <div class="col-12 mt-2">
+                        <div class="row m-lg-2">
+                            <div class="col-4">
+                                <label for="inputPassword" class="form-label h4">Password</label>
+                            </div>
+                            <div class="col-8">
+                                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control input-item-height mb-1", @id = "inputPassword" } })
+                                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-12 mt-4 ps-4 border-bottom">
+                    <div class="col-12 mt-2">
+                        <div class="row m-lg-2">
+                            <div class="col-4">
+                                <label for="inputEmail" class="form-label h4">Email</label>
+                            </div>
+                            <div class="col-8">
+                                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control input-item-height mb-1", @id = "inputEmail", @placeholder = "abc@example.com" } })
+                                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-12 mt-4 ps-4 border-bottom">
+                    <div class="col-12 mt-2">
+                        <div class="row m-lg-2">
+                            <div class="col-4">                                
+                                <label for="inputAddress" class="form-label h4">Address</label>
+                            </div>
+                            <div class="col-8">
+                                @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control input-item-height mb-1", @id = "inputAddress", @placeholder = "1234 Main St" } })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-12 mt-4 ps-4 border-bottom">
+                    <div class="col-12 mt-2">
+                        <div class="row m-lg-2">
+                            <div class="col-4">
+                                <label for="Gender" class="form-label h4">Gender</label>
+                            </div>
+                            <div class="col-8">
+                                <label for="MaleRadioButton" class="h4 me-2">Male</label> @Html.RadioButtonFor(model => model.Gender,"Male", new { htmlAttributes = new { @class = " me-5", @id = "MaleRadioButton", @name = "gender_choice" } })
+                                <label for="FemaleRadioButton" class="h4 me-2">Female</label> @Html.RadioButtonFor(model => model.Gender,"Female", new { htmlAttributes = new { @class = " me-5", @id = "FemaleRadioButton", @name = "gender_choice" } })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-12 mt-4">
+                    <button type="submit" class="btn btn-primary col-12 input-item-height">Update</button>
+                </div>
+            }
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
